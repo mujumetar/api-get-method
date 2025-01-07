@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>api get</title>
+</head>
+
+<body>
+    <div id="container">
+
+    </div>
+</body>
+<script>
+    let obj = new XMLHttpRequest();
+    let url = "https://fakestoreapi.com/products";
+    let con = document.getElementById("container")
+
+
+    obj.open('GET', url);
+
+    obj.onreadystatechange = function () {
+
+        if (obj.readyState == 1) {
+
+            console.log("unset: " + obj.readyState)
+        }
+
+        if (obj.readyState == 2) {
+            console.log("opened: " + obj.readyState)
+        }
+
+        if (obj.readyState == 3) {
+            console.log("loading: " + obj.readyState)
+        }
+
+        if (obj.readyState == 4) {
+            data = JSON.parse(obj.response);
+            console.log(data)
+
+            data.map((ele) => {
+                con.innerHTML += `<h1>${ele.title}</h1>
+                <button>Buy Now</button>
+                
+                
+                `
+            })
+
+            // console.log(obj)
+
+
+        }
+    }
+
+    obj.send();
+
+
+
+
+
+</script>
+
+</html>
